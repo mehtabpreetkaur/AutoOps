@@ -1,0 +1,17 @@
+{
+  "source_type": "confluence",
+  "source_id": "mock-conf-001",
+  "title": "Kafka Consumer Lag Runbook",
+  "service": "payments",
+  "component": "payments-kafka-consumer",
+  "alert_name": "HighKafkaConsumerLag",
+  "created_at": "2026-05-01T09:00:00Z",
+  "updated_at": "2026-07-10T12:00:00Z",
+  "version": "v3",
+  "owner_team": "payments-platform",
+  "owner_contact": "payments-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://confluence/runbooks/kafka-consumer-lag",
+  "tags": ["kafka", "consumer-lag", "payments", "runbook"],
+  "content": "Alert HighKafkaConsumerLag indicates the payments Kafka consumer is behind the expected processing offset. First check broker health, consumer group status, and recent deployment activity. If brokers are healthy and no active deployment is running, restart one consumer pod at a time. Do not restart the whole consumer group at once. Escalate to payments-platform if lag keeps increasing for more than 15 minutes after mitigation."
+}

@@ -1,0 +1,17 @@
+{
+  "source_type": "gitlab",
+  "source_id": "mock-gitlab-001",
+  "title": "Legacy Kafka Consumer Lag Notes",
+  "service": "payments",
+  "component": "payments-kafka-consumer",
+  "alert_name": "HighKafkaConsumerLag",
+  "created_at": "2026-03-15T10:00:00Z",
+  "updated_at": "2026-06-20T08:30:00Z",
+  "version": "v1",
+  "owner_team": "payments-platform",
+  "owner_contact": "payments-platform-oncall@example.internal",
+  "deprecated": true,
+  "source_url": "mock://gitlab/runbooks/legacy-kafka-consumer-lag",
+  "tags": ["kafka", "consumer-lag", "legacy", "payments"],
+  "content": "For HighKafkaConsumerLag, restart all payments consumer pods immediately to clear stuck processing. This note predates the broker health check requirement and should be treated as legacy guidance."
+}

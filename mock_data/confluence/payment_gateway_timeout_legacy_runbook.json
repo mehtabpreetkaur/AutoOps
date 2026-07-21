@@ -1,0 +1,17 @@
+{
+  "source_type": "confluence",
+  "source_id": "mock-conf-004",
+  "title": "Legacy Payment Gateway Timeout Runbook",
+  "service": "payments",
+  "component": "gateway-api",
+  "alert_name": "PaymentGatewayTimeoutRateHigh",
+  "created_at": "2026-02-01T09:00:00Z",
+  "updated_at": "2026-03-01T09:00:00Z",
+  "version": "legacy",
+  "owner_team": "payments-platform",
+  "owner_contact": "payments-platform-oncall@example.internal",
+  "deprecated": true,
+  "source_url": "mock://confluence/runbooks/payment-gateway-timeout-legacy",
+  "tags": ["payments", "gateway", "timeouts", "deprecated"],
+  "content": "Deprecated guidance for PaymentGatewayTimeoutRateHigh. This page is retained for audit only. It previously told engineers to restart all gateway-api pods immediately when timeout rate crossed threshold. Do not use this runbook for active mitigation; use the Payment Gateway Timeout SOP instead."
+}

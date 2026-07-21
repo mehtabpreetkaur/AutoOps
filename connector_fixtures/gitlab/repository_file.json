@@ -1,0 +1,12 @@
+{
+  "file_name": "kafka-consumer-lag.md",
+  "file_path": "runbooks/payments/kafka-consumer-lag.md",
+  "size": 384,
+  "encoding": "base64",
+  "content_sha256": "fixture-sha256-kafka-consumer-lag",
+  "ref": "main",
+  "blob_id": "fixture-blob-001",
+  "commit_id": "fixture-commit-001",
+  "last_commit_id": "fixture-commit-001",
+  "content": "IyBLYWZrYSBDb25zdW1lciBMYWcKQ2hlY2sgYnJva2VyIGhlYWx0aCBiZWZvcmUgcmVzdGFydGluZyBjb25zdW1lciBwb2RzLg=="
+}

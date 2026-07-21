@@ -1,0 +1,18 @@
+{
+  "source_type": "pagerduty",
+  "source_id": "mock-pd-002",
+  "title": "PagerDuty Alert PD-8100 DatabaseConnectionPoolSaturation",
+  "service": "orders",
+  "component": "orders-api",
+  "alert_name": "DatabaseConnectionPoolSaturation",
+  "incident_id": "PD-8100",
+  "created_at": "2026-07-18T09:18:00Z",
+  "updated_at": "2026-07-18T11:05:00Z",
+  "version": "resolved",
+  "owner_team": "orders-platform",
+  "owner_contact": "orders-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://pagerduty/incidents/PD-8100",
+  "tags": ["pagerduty", "database", "orders"],
+  "content": "PD-8100 fired for DatabaseConnectionPoolSaturation in orders-api. Notes say the on-call engineer linked INC-2190, reduced worker concurrency by one step after checking database latency, and resolved the alert after pool utilization stabilized."
+}

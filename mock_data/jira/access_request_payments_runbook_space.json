@@ -1,0 +1,17 @@
+{
+  "source_type": "jira",
+  "source_id": "mock-jira-004",
+  "title": "OPS-5001 Access request for payments runbook space",
+  "service": "payments",
+  "component": "runbook-access",
+  "ticket_id": "OPS-5001",
+  "created_at": "2026-07-19T10:00:00Z",
+  "updated_at": "2026-07-19T12:00:00Z",
+  "version": "done",
+  "owner_team": "payments-platform",
+  "owner_contact": "payments-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://jira/OPS-5001",
+  "tags": ["access-request", "payments", "confluence"],
+  "content": "OPS-5001 is an access request, not a PagerDuty incident. The request granted read access to the approved AutoOps test Confluence space for payments runbooks. Review requester team membership, confirm approval from payments-platform, and avoid adding customer contacts to the knowledge hub."
+}

@@ -1,0 +1,19 @@
+{
+  "source_type": "slack",
+  "source_id": "mock-slack-002",
+  "title": "Orders DB pool saturation follow-up",
+  "service": "orders",
+  "component": "orders-api",
+  "alert_name": "DatabaseConnectionPoolSaturation",
+  "thread_id": "mock-thread-orders-db-pool-20260718",
+  "channel": "#orders-oncall",
+  "created_at": "2026-07-18T09:25:00Z",
+  "updated_at": "2026-07-18T12:15:00Z",
+  "version": "thread-summary",
+  "owner_team": "orders-platform",
+  "owner_contact": "orders-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://slack/orders-oncall/threads/mock-thread-orders-db-pool-20260718",
+  "tags": ["slack", "database", "orders", "follow-up"],
+  "content": "Thread summary: orders-platform confirmed there was no database maintenance during PD-8100. The team agreed to review connection pool sizing during the next sprint and to keep the current runbook unchanged."
+}

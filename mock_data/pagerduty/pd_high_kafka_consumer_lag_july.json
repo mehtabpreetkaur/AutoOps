@@ -1,0 +1,18 @@
+{
+  "source_type": "pagerduty",
+  "source_id": "mock-pd-001",
+  "title": "PagerDuty Alert PD-7721 HighKafkaConsumerLag",
+  "service": "payments",
+  "component": "payments-kafka-consumer",
+  "alert_name": "HighKafkaConsumerLag",
+  "incident_id": "PD-7721",
+  "created_at": "2026-07-08T02:18:00Z",
+  "updated_at": "2026-07-08T04:15:00Z",
+  "version": "resolved",
+  "owner_team": "payments-platform",
+  "owner_contact": "payments-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://pagerduty/incidents/PD-7721",
+  "tags": ["pagerduty", "alert", "kafka", "payments"],
+  "content": "PD-7721 fired for HighKafkaConsumerLag in payments. The embedded runbook link pointed to the Confluence Kafka Consumer Lag Runbook. Notes indicate the on-call engineer created Jira ticket INC-1842 and followed the one-pod restart workflow after confirming brokers were healthy."
+}

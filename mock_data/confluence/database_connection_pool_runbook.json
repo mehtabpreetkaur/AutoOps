@@ -1,0 +1,17 @@
+{
+  "source_type": "confluence",
+  "source_id": "mock-conf-002",
+  "title": "Database Connection Pool Saturation Runbook",
+  "service": "orders",
+  "component": "orders-api",
+  "alert_name": "DatabaseConnectionPoolSaturation",
+  "created_at": "2026-06-01T09:00:00Z",
+  "updated_at": "2026-07-18T10:00:00Z",
+  "version": "v2",
+  "owner_team": "orders-platform",
+  "owner_contact": "orders-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://confluence/runbooks/database-connection-pool-saturation",
+  "tags": ["database", "connection-pool", "orders", "runbook"],
+  "content": "Alert DatabaseConnectionPoolSaturation means orders-api is close to exhausting available database connections. First check active request rate, database latency, and recent deployments. If database latency is normal, reduce orders-api worker concurrency by one step and monitor pool utilization for 10 minutes. If database latency is high, escalate to orders-platform and database-oncall before changing application concurrency. Review the related PagerDuty incident notes for recent mitigation history."
+}

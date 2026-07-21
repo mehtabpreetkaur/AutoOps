@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "messages": [
+    {
+      "type": "message",
+      "user": "U_AUTOOPS_ONCALL",
+      "text": "HighKafkaConsumerLag fired for payments. Checking broker health and settlement replay status.",
+      "ts": "1795000000.000100",
+      "thread_ts": "1795000000.000100"
+    },
+    {
+      "type": "message",
+      "user": "U_PLATFORM",
+      "text": "Settlement replay is active. Monitor lag slope before restarting pods.",
+      "ts": "1795000200.000200",
+      "thread_ts": "1795000000.000100"
+    },
+    {
+      "type": "message",
+      "user": "U_AUTOOPS_ONCALL",
+      "text": "Lag slope is decreasing. Continuing monitoring for 15 minutes.",
+      "ts": "1795000300.000300",
+      "thread_ts": "1795000000.000100"
+    }
+  ],
+  "has_more": false
+}

@@ -1,0 +1,18 @@
+{
+  "source_type": "jira",
+  "source_id": "mock-jira-001",
+  "title": "INC-1842 Payments Kafka consumer lag during settlement window",
+  "service": "payments",
+  "component": "payments-kafka-consumer",
+  "alert_name": "HighKafkaConsumerLag",
+  "ticket_id": "INC-1842",
+  "created_at": "2026-07-08T02:20:00Z",
+  "updated_at": "2026-07-08T04:10:00Z",
+  "version": "final",
+  "owner_team": "payments-platform",
+  "owner_contact": "payments-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://jira/INC-1842",
+  "tags": ["incident", "kafka", "payments", "settlement"],
+  "content": "INC-1842 was triggered by HighKafkaConsumerLag for payments during the settlement batch window. The recent workflow was to verify broker health, check whether settlement replay was active, restart one consumer pod, and monitor lag slope for 10 minutes. The incident was resolved by pausing settlement replay and restarting a single degraded consumer pod."
+}

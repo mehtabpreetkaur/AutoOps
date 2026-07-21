@@ -1,0 +1,44 @@
+{
+  "description": "Sanitized Phase 2 connector fixture manifest. These files are for adapter and sync tests only; they are not live API responses.",
+  "sources": ["confluence", "gitlab", "google_drive", "google_docs", "jira", "pagerduty", "slack"],
+  "matrix": [
+    {
+      "scenario": "first_sync",
+      "expected_behavior": "Creates raw metadata, normalized document, chunks, FTS rows, and sync state.",
+      "fixture_refs": [
+        "confluence/page_current.json",
+        "gitlab/repository_file.json",
+        "google_drive/files_list.json",
+        "google_docs/document_get.json",
+        "jira/issue_incident.json",
+        "pagerduty/incident.json",
+        "slack/conversations_history.json"
+      ]
+    },
+    {
+      "scenario": "incremental_changed_record",
+      "expected_behavior": "Updates document and replaces old chunks atomically.",
+      "fixture_refs": ["confluence/page_updated.json"]
+    },
+    {
+      "scenario": "deleted_or_archived_record",
+      "expected_behavior": "Marks source archived/deleted and changes query ranking.",
+      "fixture_refs": ["confluence/page_archived.json"]
+    },
+    {
+      "scenario": "jira_non_pagerduty_ticket",
+      "expected_behavior": "Ingests Jira issue independently without requiring PagerDuty relationship.",
+      "fixture_refs": ["jira/issue_access_request.json", "jira/issue_prod_change.json"]
+    },
+    {
+      "scenario": "thread_replies",
+      "expected_behavior": "Preserves Slack thread timestamp, replies, and update metadata.",
+      "fixture_refs": ["slack/conversations_replies.json"]
+    },
+    {
+      "scenario": "blocked_payload_placeholder",
+      "expected_behavior": "Stores audit metadata only; fixture contains only a redacted placeholder, not blocked content.",
+      "fixture_refs": ["confluence/page_blocked_placeholder.json"]
+    }
+  ]
+}

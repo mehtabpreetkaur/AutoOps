@@ -1,0 +1,30 @@
+{
+  "incident": {
+    "id": "PDINC-1001",
+    "incident_number": 1001,
+    "title": "HighKafkaConsumerLag payments",
+    "summary": "HighKafkaConsumerLag payments",
+    "status": "resolved",
+    "urgency": "high",
+    "created_at": "2026-07-20T01:05:00Z",
+    "updated_at": "2026-07-20T02:25:00Z",
+    "resolved_at": "2026-07-20T02:25:00Z",
+    "html_url": "mock://pagerduty/incidents/PDINC-1001",
+    "service": {
+      "id": "PDSVC-001",
+      "summary": "Payments Platform"
+    },
+    "escalation_policy": {
+      "id": "PDEP-001",
+      "summary": "Payments Platform Escalation"
+    },
+    "assignments": [
+      {
+        "assignee": {
+          "id": "PDUSER-001",
+          "summary": "payments-platform-oncall"
+        }
+      }
+    ]
+  }
+}

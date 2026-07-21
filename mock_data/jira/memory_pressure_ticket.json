@@ -1,0 +1,18 @@
+{
+  "source_type": "jira",
+  "source_id": "mock-jira-003",
+  "title": "OPS-4471 Search worker memory pressure",
+  "service": "search",
+  "component": "index-worker",
+  "alert_name": "MemoryPressureHigh",
+  "ticket_id": "OPS-4471",
+  "created_at": "2026-07-16T05:10:00Z",
+  "updated_at": "2026-07-16T07:30:00Z",
+  "version": "resolved",
+  "owner_team": "search-platform",
+  "owner_contact": "search-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://jira/OPS-4471",
+  "tags": ["memory", "search", "partial-context"],
+  "content": "OPS-4471 records MemoryPressureHigh on search index-worker. The recent workflow was to check heap usage, confirm whether indexing replay was active, and monitor garbage collection pause time. No formal runbook was linked in the ticket."
+}

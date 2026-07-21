@@ -1,0 +1,18 @@
+{
+  "source_type": "jira",
+  "source_id": "mock-jira-002",
+  "title": "INC-2190 Orders database connection pool saturation",
+  "service": "orders",
+  "component": "orders-api",
+  "alert_name": "DatabaseConnectionPoolSaturation",
+  "ticket_id": "INC-2190",
+  "created_at": "2026-07-18T09:20:00Z",
+  "updated_at": "2026-07-18T11:00:00Z",
+  "version": "final",
+  "owner_team": "orders-platform",
+  "owner_contact": "orders-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://jira/INC-2190",
+  "tags": ["incident", "database", "orders"],
+  "content": "INC-2190 followed the Database Connection Pool Saturation Runbook. The engineer checked request rate, confirmed database latency was normal, reduced worker concurrency by one step, and monitored pool utilization until it returned below 70 percent."
+}

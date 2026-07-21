@@ -1,0 +1,17 @@
+{
+  "source_type": "jira",
+  "source_id": "mock-jira-005",
+  "title": "CHG-7001 Production change for checkout-api cache rollout",
+  "service": "checkout",
+  "component": "checkout-api",
+  "ticket_id": "CHG-7001",
+  "created_at": "2026-07-18T09:00:00Z",
+  "updated_at": "2026-07-18T11:30:00Z",
+  "version": "completed",
+  "owner_team": "checkout-platform",
+  "owner_contact": "checkout-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://jira/CHG-7001",
+  "tags": ["production-change", "checkout", "cache"],
+  "content": "CHG-7001 is a production change, not an alert. Checkout-api cache configuration was rolled out during the approved window. If CheckoutLatencyHigh appears during or shortly after the window, review the rollout timestamp, check cache hit rate, verify downstream dependency latency, and follow the checkout latency runbook before escalating."
+}

@@ -1,0 +1,18 @@
+{
+  "source_type": "slack",
+  "source_id": "mock-slack-004",
+  "title": "Checkout cache rollout thread",
+  "service": "checkout",
+  "component": "checkout-api",
+  "thread_id": "mock-thread-checkout-cache-20260718",
+  "channel": "#checkout-oncall",
+  "created_at": "2026-07-18T09:05:00Z",
+  "updated_at": "2026-07-18T12:00:00Z",
+  "version": "thread-summary",
+  "owner_team": "checkout-platform",
+  "owner_contact": "checkout-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://slack/checkout-oncall/threads/mock-thread-checkout-cache-20260718",
+  "tags": ["slack", "checkout", "production-change", "cache"],
+  "content": "Thread summary: checkout-platform confirmed CHG-7001 completed without rollback. The team agreed that if checkout latency rises after the cache rollout, the on-call engineer should compare cache hit rate before and after the change, check dependency latency, and keep the production change ticket linked in the incident notes."
+}

@@ -1,0 +1,16 @@
+{
+  "source_type": "google_docs",
+  "source_id": "mock-gdoc-003",
+  "title": "Payments Planned Maintenance Calendar",
+  "service": "payments",
+  "component": "settlement-replay",
+  "created_at": "2026-07-15T08:00:00Z",
+  "updated_at": "2026-07-22T00:30:00Z",
+  "version": "v3",
+  "owner_team": "settlement-ops",
+  "owner_contact": "settlement-ops-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://google-docs/maintenance/payments",
+  "tags": ["maintenance", "payments", "settlement", "planned-change"],
+  "content": "Payments planned maintenance calendar. Settlement replay maintenance is scheduled for 2026-07-22 from 01:00Z to 02:00Z. During this window, HighKafkaConsumerLag may increase while replay is paused and resumed. Before escalating, check the maintenance window, confirm replay status with settlement-ops, and monitor lag slope for 15 minutes after replay resumes."
+}

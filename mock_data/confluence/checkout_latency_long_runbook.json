@@ -1,0 +1,17 @@
+{
+  "source_type": "confluence",
+  "source_id": "mock-conf-003",
+  "title": "Checkout Latency Long Runbook",
+  "service": "checkout",
+  "component": "checkout-api",
+  "alert_name": "CheckoutLatencyHigh",
+  "created_at": "2026-06-10T10:00:00Z",
+  "updated_at": "2026-07-11T10:00:00Z",
+  "version": "v4",
+  "owner_team": "checkout-platform",
+  "owner_contact": "checkout-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://confluence/runbooks/checkout-latency-long",
+  "tags": ["checkout", "latency", "long-runbook"],
+  "content": "Alert CheckoutLatencyHigh means checkout-api latency is above the user-impact threshold. First check regional error rate, dependency latency, cache hit rate, and recent deployment status. If one region is affected, reduce traffic weight for that region and monitor checkout p95 latency for 15 minutes. If all regions are affected, check payment provider latency, inventory service latency, and database write latency before escalating. Review active maintenance notices before changing traffic. Confirm that checkout-api autoscaling is healthy and that queue depth is not increasing. Monitor synthetic checkout success rate after each mitigation step. Escalate to checkout-platform if p95 latency remains above threshold for more than 20 minutes. Additional context: this long mock runbook intentionally includes enough operational detail to exercise chunking behavior in the ingestion pipeline. The responder should compare regional impact, dependency health, recent deploy status, cache behavior, autoscaling state, queue depth, and synthetic transaction status before deciding whether to reduce traffic, rollback a deployment, or escalate to a dependency owner. Continue monitoring after mitigation and record the exact source used for each action."
+}

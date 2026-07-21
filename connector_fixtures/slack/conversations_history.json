@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "messages": [
+    {
+      "type": "message",
+      "user": "U_AUTOOPS_ONCALL",
+      "text": "HighKafkaConsumerLag fired for payments. Checking broker health and settlement replay status.",
+      "ts": "1795000000.000100",
+      "thread_ts": "1795000000.000100",
+      "reply_count": 2,
+      "latest_reply": "1795000300.000300"
+    }
+  ],
+  "has_more": false,
+  "response_metadata": {
+    "next_cursor": ""
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "documentId": "gdoc-1001",
+  "title": "Payments Ownership SOP",
+  "body": {
+    "content": [
+      {
+        "paragraph": {
+          "elements": [
+            {
+              "textRun": {
+                "content": "Payments ownership: Kafka consumers and gateway API belong to payments-platform. Settlement replay belongs to settlement-ops."
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

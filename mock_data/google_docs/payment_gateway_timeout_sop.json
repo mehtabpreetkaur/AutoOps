@@ -1,0 +1,17 @@
+{
+  "source_type": "google_docs",
+  "source_id": "mock-gdoc-001",
+  "title": "Payment Gateway Timeout SOP",
+  "service": "payments",
+  "component": "gateway-api",
+  "alert_name": "PaymentGatewayTimeoutRateHigh",
+  "created_at": "2026-04-02T11:00:00Z",
+  "updated_at": "2026-07-05T16:45:00Z",
+  "version": "v2",
+  "owner_team": "payments-platform",
+  "owner_contact": "payments-platform-oncall@example.internal",
+  "deprecated": false,
+  "source_url": "mock://google-docs/sops/payment-gateway-timeout",
+  "tags": ["payments", "gateway", "timeouts", "sop"],
+  "content": "For PaymentGatewayTimeoutRateHigh, compare timeout rate by payment provider. If only one provider is affected, reduce traffic weight for that provider according to the approved change window. If all providers are affected, check gateway-api saturation, recent deploys, and database latency before escalating."
+}

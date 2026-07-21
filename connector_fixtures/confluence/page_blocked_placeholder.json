@@ -1,0 +1,21 @@
+{
+  "id": "conf-page-blocked-0001",
+  "status": "current",
+  "title": "Blocked Payload Placeholder",
+  "spaceId": "space-autoops",
+  "version": {
+    "number": 1,
+    "createdAt": "2026-07-21T08:00:00Z"
+  },
+  "createdAt": "2026-07-21T08:00:00Z",
+  "body": {
+    "storage": {
+      "representation": "storage",
+      "value": "[REDACTED_BLOCKED_CONTENT_PLACEHOLDER]"
+    }
+  },
+  "_links": {
+    "base": "mock://confluence",
+    "webui": "/spaces/AUTOOPS/pages/conf-page-blocked-0001"
+  }
+}

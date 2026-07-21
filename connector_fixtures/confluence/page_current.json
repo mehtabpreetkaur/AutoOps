@@ -1,0 +1,21 @@
+{
+  "id": "conf-page-1001",
+  "status": "current",
+  "title": "Payments Kafka Consumer Lag Runbook",
+  "spaceId": "space-autoops",
+  "version": {
+    "number": 3,
+    "createdAt": "2026-07-20T08:00:00Z"
+  },
+  "createdAt": "2026-07-01T08:00:00Z",
+  "body": {
+    "storage": {
+      "representation": "storage",
+      "value": "<h1>Kafka Consumer Lag</h1><p>First check broker health, consumer group status, and settlement replay status. Restart one consumer pod at a time only after confirming brokers are healthy.</p>"
+    }
+  },
+  "_links": {
+    "base": "mock://confluence",
+    "webui": "/spaces/AUTOOPS/pages/conf-page-1001"
+  }
+}
