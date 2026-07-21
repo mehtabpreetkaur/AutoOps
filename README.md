@@ -8,9 +8,13 @@ This project was built with Codex using GPT-5.6 for the OpenAI Build Week Challe
 
 Category: **Developer Tools**
 
+License: **MIT**
+
 Best judging path:
 
 ```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python -m autoops demo
 ```
 
@@ -159,17 +163,17 @@ AutoOps goes beyond basic document search by combining citation, timeline awaren
 
 ## Setup
 
-The included workspace has a project-local `.venv` already configured. Use it for the quickest path:
-
-```bash
-.venv/bin/python -m autoops --help
-```
-
-Fresh local setup:
+Create a project-local virtual environment:
 
 ```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
+```
+
+Then verify the CLI is available:
+
+```bash
+.venv/bin/python -m autoops --help
 ```
 
 No external data source accounts are required for the current demo. All runnable examples use local mock data and sanitized connector fixtures.
@@ -496,6 +500,8 @@ Challenge Readiness Gate 2 is complete:
 
 Next proposed implementation gate:
 
+- Phase 3 Gate 1: event-triggered agent design.
+- Future retrieval branch: `feature/hybrid-search-experimental` explores opt-in hybrid search with SQLite FTS, local deterministic embeddings, and structured metadata boosts.
 - Experimental Hybrid Search Gate: replace deterministic prototype embeddings with a production-grade local embedding model, evaluate retrieval quality, and decide whether the feature graduates into `main`.
 
 No live API calls have been added yet. Before any real connector account setup is required, implementation must stop and ask the project owner to create or approve the platform account, workspace, token, scopes, and allowlist.
@@ -504,7 +510,9 @@ No live API calls have been added yet. Before any real connector account setup i
 
 - Working project: included.
 - Category: Developer Tools.
+- License: MIT.
 - Project description: included above.
+- Demo script and submission notes: see `SUBMISSION.md`.
 - Demo video: record using the demo flow above.
 - Repository URL: add the public repo URL, or share a private repo with `testing@devpost.com` and `build-week-event@openai.com`.
 - README setup instructions: included.
