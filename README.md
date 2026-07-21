@@ -271,7 +271,7 @@ Connector fixture payload
 
 ## Build Week Notes
 
-This project was built with Codex using GPT-5.6 for the OpenAI Build Week Challenge. See [SUBMISSION.md](SUBMISSION.md) for judging notes, demo script, verification, and future-scope tracking.
+This project was built with Codex using GPT-5.6 for the OpenAI Build Week Challenge. 
 
 ## License
 
