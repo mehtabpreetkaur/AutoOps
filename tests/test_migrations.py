@@ -14,6 +14,7 @@ EXPECTED_PHASE_2_TABLES = {
     "sync_state",
     "raw_source_records",
     "source_relationships",
+    "chunk_embeddings",
 }
 
 
@@ -48,6 +49,7 @@ class MigrationTests(unittest.TestCase):
                 self.assertEqual(summary.documents_indexed, conn.execute("SELECT COUNT(*) FROM documents").fetchone()[0])
                 self.assertEqual(CURRENT_SCHEMA_VERSION, current_schema_version(conn))
                 self.assertEqual(1, conn.execute("SELECT COUNT(*) FROM schema_version WHERE version = 2").fetchone()[0])
+                self.assertEqual(1, conn.execute("SELECT COUNT(*) FROM schema_version WHERE version = 3").fetchone()[0])
             finally:
                 conn.close()
 

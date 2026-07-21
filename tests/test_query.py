@@ -56,10 +56,29 @@ class QueryTests(unittest.TestCase):
         result = query_knowledge_hub("payments ownership map settlement replay", self.db_path, limit=1)
         data = result.as_dict()
 
+        self.assertEqual("fts", data["search_mode"])
         self.assertEqual("mock-gdoc-002", data["sources"][0]["source_id"])
         self.assertEqual([], data["recommended_remediation_steps"])
-        self.assertIn("No remediation step was extracted from the retrieved source text.", data["gaps"])
-        self.assertEqual("low", data["confidence"])
+        self.assertNotIn("No remediation step was extracted from the retrieved source text.", data["gaps"])
+        self.assertEqual("medium", data["confidence"])
+
+    def test_experimental_hybrid_search_returns_scores_and_structured_owner_context(self) -> None:
+        result = query_knowledge_hub(
+            "responsible team payments consumer backlog",
+            self.db_path,
+            limit=3,
+            search_mode="hybrid",
+        )
+        data = result.as_dict()
+
+        self.assertEqual("hybrid", data["search_mode"])
+        self.assertEqual("ownership", data["query_intent"])
+        self.assertGreaterEqual(len(data["sources"]), 1)
+        self.assertEqual("payments-platform", data["sources"][0]["owner_team"])
+        self.assertIn("payments-platform appears to own", data["answer"])
+        self.assertEqual([], data["recommended_remediation_steps"])
+        self.assertIn("retrieval_scores", data["sources"][0])
+        self.assertIn("hybrid", data["sources"][0]["retrieval_scores"])
 
     def test_long_checkout_runbook_query_returns_multiple_chunks_from_same_source(self) -> None:
         result = query_knowledge_hub("CheckoutLatencyHigh checkout-api dependency latency", self.db_path)

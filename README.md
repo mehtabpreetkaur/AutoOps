@@ -43,7 +43,7 @@ http://127.0.0.1:8000/demo
 Current verification:
 
 ```text
-Ran 57 tests
+Ran 59 tests
 
 OK
 ```
@@ -143,7 +143,7 @@ Key decisions made during the Codex session:
 
 **Technological Implementation**
 
-AutoOps is a working, non-trivial local project with a CLI, FastAPI API, browser demo, Docker packaging, SQLite FTS search, schema migrations, fixture connector architecture, scheduled/manual refresh workflow, source citation model, contradiction detection, safety screening, and 57 automated tests.
+AutoOps is a working, non-trivial local project with a CLI, FastAPI API, browser demo, Docker packaging, SQLite FTS search, schema migrations, fixture connector architecture, scheduled/manual refresh workflow, source citation model, contradiction detection, safety screening, and 59 automated tests.
 
 **Design**
 
@@ -284,6 +284,14 @@ Core alert triage:
 ```bash
 .venv/bin/python -m autoops query "Who owns payments kafka consumer lag?" --db data/autoops.db
 ```
+
+Experimental hybrid-search branch only:
+
+```bash
+.venv/bin/python -m autoops query "responsible team payments consumer backlog" --db data/autoops.db --search-mode hybrid --limit 3
+```
+
+Shows the future retrieval path: SQLite FTS + local deterministic embeddings + structured metadata boosts. Ownership questions are detected as ownership intent, so AutoOps returns the likely owning team first and avoids unrelated remediation steps.
 
 ```bash
 .venv/bin/python -m autoops query "CheckoutLatencyHigh checkout api remediation" --db data/autoops.db
@@ -444,7 +452,7 @@ Connector fixture payload
 - Scheduled refresh is implemented as a cron-compatible command, not a long-running daemon.
 - No automated ticket or alert triage yet.
 - No authentication or authorization on the local prototype API.
-- Querying uses SQLite FTS5 and heuristics, not semantic embeddings.
+- Default querying uses SQLite FTS5 and heuristics. The `feature/hybrid-search-experimental` branch adds an opt-in local hybrid mode with deterministic embeddings and structured metadata boosts.
 - Contradiction detection is conservative and rule-based.
 - AutoOps flags contradictions but does not decide which source is correct.
 
@@ -488,7 +496,7 @@ Challenge Readiness Gate 2 is complete:
 
 Next proposed implementation gate:
 
-- Phase 3 Gate 1: event-triggered agent design.
+- Experimental Hybrid Search Gate: replace deterministic prototype embeddings with a production-grade local embedding model, evaluate retrieval quality, and decide whether the feature graduates into `main`.
 
 No live API calls have been added yet. Before any real connector account setup is required, implementation must stop and ask the project owner to create or approve the platform account, workspace, token, scopes, and allowlist.
 

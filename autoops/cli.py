@@ -32,6 +32,12 @@ def build_parser() -> argparse.ArgumentParser:
     query_parser.add_argument("query", help="Question or alert/ticket context to search for.")
     query_parser.add_argument("--db", type=Path, default=DEFAULT_DB_PATH, help="SQLite database path.")
     query_parser.add_argument("--limit", type=int, default=6, help="Maximum source chunks to retrieve.")
+    query_parser.add_argument(
+        "--search-mode",
+        choices=["fts", "hybrid"],
+        default="fts",
+        help="Retrieval mode. 'hybrid' is experimental and combines FTS, local embeddings, and metadata boosts.",
+    )
     query_parser.add_argument("--json", action="store_true", help="Print structured JSON output.")
 
     sync_parser = subparsers.add_parser("sync", help="Run an approved Phase 2 fixture connector sync.")
@@ -110,7 +116,7 @@ def main() -> None:
         print(f"Documents blocked/errors: {summary.documents_blocked}")
         print(f"Chunks indexed: {summary.chunks_indexed}")
     elif args.command == "query":
-        result = query_knowledge_hub(args.query, args.db, limit=args.limit)
+        result = query_knowledge_hub(args.query, args.db, limit=args.limit, search_mode=args.search_mode)
         print(result_to_json(result) if args.json else format_query_result(result))
     elif args.command == "sync":
         if args.connector == "confluence":

@@ -6,6 +6,7 @@ import uuid
 from pathlib import Path
 from typing import Any
 
+from .embeddings import EMBEDDING_DIMENSIONS, EMBEDDING_MODEL, embed_text, serialize_embedding
 from .migrations import get_schema_version, migrate
 
 
@@ -71,6 +72,14 @@ CREATE TABLE IF NOT EXISTS audit_events (
     message TEXT NOT NULL,
     created_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS chunk_embeddings (
+    chunk_id TEXT PRIMARY KEY REFERENCES chunks(chunk_id) ON DELETE CASCADE,
+    embedding_model TEXT NOT NULL,
+    dimensions INTEGER NOT NULL,
+    embedding_json TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 """
 
 
@@ -93,6 +102,7 @@ def current_schema_version(conn: sqlite3.Connection) -> int:
 
 
 def clear_index(conn: sqlite3.Connection) -> None:
+    conn.execute("DELETE FROM chunk_embeddings")
     conn.execute("DELETE FROM chunks_fts")
     conn.execute("DELETE FROM chunks")
     conn.execute("DELETE FROM documents")
@@ -205,6 +215,9 @@ def list_sync_states(conn: sqlite3.Connection) -> list[dict[str, Any]]:
 
 
 def replace_document(conn: sqlite3.Connection, document: dict[str, Any]) -> None:
+    chunk_ids = _chunk_ids_for_source(conn, document["source_id"])
+    if chunk_ids:
+        conn.executemany("DELETE FROM chunk_embeddings WHERE chunk_id = ?", [(chunk_id,) for chunk_id in chunk_ids])
     conn.execute("DELETE FROM chunks_fts WHERE source_id = ?", (document["source_id"],))
     conn.execute("DELETE FROM chunks WHERE source_id = ?", (document["source_id"],))
     conn.execute("DELETE FROM documents WHERE source_id = ?", (document["source_id"],))
@@ -212,6 +225,9 @@ def replace_document(conn: sqlite3.Connection, document: dict[str, Any]) -> None
 
 
 def delete_document(conn: sqlite3.Connection, source_id: str) -> None:
+    chunk_ids = _chunk_ids_for_source(conn, source_id)
+    if chunk_ids:
+        conn.executemany("DELETE FROM chunk_embeddings WHERE chunk_id = ?", [(chunk_id,) for chunk_id in chunk_ids])
     conn.execute("DELETE FROM chunks_fts WHERE source_id = ?", (source_id,))
     conn.execute("DELETE FROM chunks WHERE source_id = ?", (source_id,))
     conn.execute("DELETE FROM documents WHERE source_id = ?", (source_id,))
@@ -262,6 +278,25 @@ def insert_chunk(conn: sqlite3.Connection, chunk: dict[str, Any]) -> None:
         )
         """,
         chunk,
+    )
+    upsert_chunk_embedding(conn, chunk["chunk_id"], _embedding_text(chunk))
+
+
+def upsert_chunk_embedding(conn: sqlite3.Connection, chunk_id: str, text: str) -> None:
+    vector = embed_text(text)
+    conn.execute(
+        """
+        INSERT INTO chunk_embeddings (
+            chunk_id, embedding_model, dimensions, embedding_json
+        ) VALUES (
+            ?, ?, ?, ?
+        )
+        ON CONFLICT(chunk_id) DO UPDATE SET
+            embedding_model = excluded.embedding_model,
+            dimensions = excluded.dimensions,
+            embedding_json = excluded.embedding_json
+        """,
+        (chunk_id, EMBEDDING_MODEL, EMBEDDING_DIMENSIONS, serialize_embedding(vector)),
     )
 
 
@@ -331,3 +366,16 @@ def _document_row_to_dict(row: sqlite3.Row) -> dict[str, Any]:
     except json.JSONDecodeError:
         document["tags"] = []
     return document
+
+
+def _chunk_ids_for_source(conn: sqlite3.Connection, source_id: str) -> list[str]:
+    rows = conn.execute("SELECT chunk_id FROM chunks WHERE source_id = ?", (source_id,)).fetchall()
+    return [row["chunk_id"] for row in rows]
+
+
+def _embedding_text(chunk: dict[str, Any]) -> str:
+    metadata = " ".join(
+        str(chunk.get(field) or "")
+        for field in ("title", "source_type", "service", "component", "alert_name")
+    )
+    return f"{metadata} {chunk['chunk_text']}"

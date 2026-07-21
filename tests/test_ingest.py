@@ -27,6 +27,10 @@ class IngestionTests(unittest.TestCase):
                     conn.execute("SELECT COUNT(*) FROM chunks_fts").fetchone()[0],
                     expected_documents,
                 )
+                self.assertEqual(
+                    conn.execute("SELECT COUNT(*) FROM chunks").fetchone()[0],
+                    conn.execute("SELECT COUNT(*) FROM chunk_embeddings").fetchone()[0],
+                )
                 self.assertEqual(expected_documents, conn.execute("SELECT COUNT(*) FROM audit_events").fetchone()[0])
                 self.assertGreaterEqual(
                     conn.execute("SELECT COUNT(*) FROM chunks_fts WHERE chunks_fts MATCH 'kafka'").fetchone()[0],

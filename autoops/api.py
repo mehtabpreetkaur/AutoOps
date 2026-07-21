@@ -22,6 +22,7 @@ DEFAULT_DB_PATH = Path("data/autoops.db")
 class QueryRequest(BaseModel):
     query: str = Field(min_length=1)
     limit: int = Field(default=6, ge=1, le=50)
+    search_mode: str = Field(default="fts", pattern="^(fts|hybrid)$")
 
 
 class IngestRequest(BaseModel):
@@ -75,7 +76,12 @@ def create_app(db_path: Path = DEFAULT_DB_PATH) -> FastAPI:
 
     @app.post("/query")
     def query(request: QueryRequest) -> dict[str, Any]:
-        result = query_knowledge_hub(request.query, app.state.db_path, limit=request.limit)
+        result = query_knowledge_hub(
+            request.query,
+            app.state.db_path,
+            limit=request.limit,
+            search_mode=request.search_mode,
+        )
         return result.as_dict()
 
     @app.post("/sync/confluence")

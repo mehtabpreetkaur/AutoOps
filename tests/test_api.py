@@ -46,6 +46,16 @@ class APITests(unittest.TestCase):
         self.assertEqual([], response["contradictions"])
         self.assertEqual("high", response["confidence"])
 
+    def test_query_endpoint_accepts_experimental_hybrid_search_mode(self) -> None:
+        response = self._endpoint("/query")(
+            QueryRequest(query="responsible team payments consumer backlog", search_mode="hybrid")
+        )
+
+        self.assertEqual("hybrid", response["search_mode"])
+        self.assertEqual("ownership", response["query_intent"])
+        self.assertIn("retrieval_scores", response["sources"][0])
+        self.assertEqual([], response["recommended_remediation_steps"])
+
     def test_openapi_includes_expected_paths(self) -> None:
         paths = self.app.openapi()["paths"]
 

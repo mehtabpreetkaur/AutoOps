@@ -3,7 +3,7 @@ from __future__ import annotations
 import sqlite3
 
 
-CURRENT_SCHEMA_VERSION = 2
+CURRENT_SCHEMA_VERSION = 3
 
 
 MIGRATIONS: tuple[tuple[int, str], ...] = (
@@ -78,6 +78,21 @@ MIGRATIONS: tuple[tuple[int, str], ...] = (
 
         CREATE INDEX IF NOT EXISTS idx_source_relationships_to
             ON source_relationships(to_source_id);
+        """,
+    ),
+    (
+        3,
+        """
+        CREATE TABLE IF NOT EXISTS chunk_embeddings (
+            chunk_id TEXT PRIMARY KEY REFERENCES chunks(chunk_id) ON DELETE CASCADE,
+            embedding_model TEXT NOT NULL,
+            dimensions INTEGER NOT NULL,
+            embedding_json TEXT NOT NULL,
+            created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_chunk_embeddings_model
+            ON chunk_embeddings(embedding_model);
         """,
     ),
 )
